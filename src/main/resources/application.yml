@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: teste
+  datasource:
+    url: jdbc:postgresql://localhost/weyne_db
+    username: postgres
+    password: vaskim106
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      connection-timeout: 10000
+      max-lifetime: 300000
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  servlet-path: /teste
+  servlet:
+    context-path: /teste
+  port: 8087

@@ -3,6 +3,7 @@ package com.weyne.teste.service;
 
 import com.weyne.teste.model.Empresa;
 import com.weyne.teste.model.Funcionario;
+import com.weyne.teste.model.dto.AdicionarSaldoDTO;
 import com.weyne.teste.model.dto.TransferenciaDTO;
 import com.weyne.teste.repository.EmpresaRepository;
 import com.weyne.teste.repository.FuncionarioRepository;
@@ -93,5 +94,21 @@ public class TesteService {
         }
     }
 
+
+    public String adicionarSaldo(AdicionarSaldoDTO dto){
+        Optional<Empresa> empresa = this.buscarEmpresaPorId(dto.getIdEmpresa());
+        if (empresa.isPresent()){
+            empresa.get().setSaldo(empresa.get().getSaldo() + dto.getValor());
+            empresaRepository.save(empresa.get());
+            return "Valor adicionado";
+        } else {
+            return "Empresa não encontrada";
+        }
+    }
+
+    public List<Funcionario> buscarFuncionariosPorEmpresa(Long idEmpresa){
+        return funcionarioRepository.findAllByEmpresa_Id(idEmpresa);
+
+    }
 
 }

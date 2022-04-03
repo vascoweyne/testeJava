@@ -3,6 +3,7 @@ package com.weyne.teste.controller;
 import com.weyne.teste.model.Empresa;
 import com.weyne.teste.model.Funcionario;
 import com.weyne.teste.model.constantes.API;
+import com.weyne.teste.model.dto.AdicionarSaldoDTO;
 import com.weyne.teste.model.dto.TransferenciaDTO;
 import com.weyne.teste.service.TesteService;
 import io.swagger.annotations.Api;
@@ -89,4 +90,17 @@ public class TesteController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/adicionar-saldo")
+    @ApiOperation(value = "adiciona um valor")
+    public ResponseEntity<String> adicionarSaldo(@RequestBody @Valid AdicionarSaldoDTO dto, HttpServletRequest request) {
+        String response = testeService.adicionarSaldo(dto);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/funcionarios-empresa/{id}")
+    @ApiOperation(value = "Buscar funcionarios por empresa")
+    public ResponseEntity<List<Funcionario>> buscarFuncionariosPorEmpresa(@PathVariable Long id, HttpServletRequest request) {
+        List<Funcionario> funcionarios = testeService.buscarFuncionariosPorEmpresa(id);
+        return ResponseEntity.ok(funcionarios);
+    }
 }

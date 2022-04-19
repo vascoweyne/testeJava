@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/weyne_db
     username: postgres
-    password: vaskim106
+    password: admin
     hikari:
       minimum-idle: 3
       maximum-pool-size: 20
